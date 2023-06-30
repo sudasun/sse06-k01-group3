@@ -14,7 +14,8 @@
     Linux raspi4-sse 5.15.84-v7l+ #1613 SMP Thu Jan 5 12:01:26 GMT 2023 armv7l GNU/Linux  
 ```
 
-## セットアップ手順で参考資料と異なる点（ひとまず差分だけ記載）
+## セットアップ手順で異なる点（ひとまず差分だけ記載）
+
 
 - Julius本体はv4.6でも良い
   ``` sh
@@ -33,7 +34,7 @@
 
 ---
 
-## 辞書ファイル登録手順
+## 辞書ファイル登録
 
 大まかな手順は以下の通り。
 1. 「読み」ファイル作成  - (trash.yomi)
@@ -100,7 +101,7 @@ pi@raspi4-sse:~/julius-4.6/dict $ vi trash.voca
 食品トレイ sh o k u h i N t o r e i
 % KAMIKOQPU
 紙コップ k a m i k o q p u
-% NS_Btrash.phone
+% NS_B
 [s] silB
 % NS_E
 [/s] silE
