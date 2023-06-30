@@ -1,0 +1,14 @@
+※コマンドは各自のpathに調整する必要あり
+
+□音声テスト
+~/julius/julius-4.6配下で以下のコマンド
+~/julius/julius-4.6/julius/julius -C ~/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/julius/dict/trash -input mic
+
+
+□分類テスト
+ターミナル１（Julius　サーバー）　@ ~/julius/julius-4.6配下で以下のコマンド
+~/julius/julius-4.6/julius/julius -C ~/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/julius/dict/trash -input mic -module&
+
+ターミナル２（Python クライアント） @ ~Desktop配下で以下のコマンド
+python print_trash.py
+

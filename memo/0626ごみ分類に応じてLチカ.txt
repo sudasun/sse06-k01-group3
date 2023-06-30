@@ -1,0 +1,30 @@
+
+
+※コマンドは各自のpathに調整する必要あり
+
+□音声テスト
+~/julius/julius-4.6配下で以下のコマンド
+~/julius/julius-4.6/julius/julius -C ~/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/julius/dict/trash -input mic
+
+
+□分類テスト
+ターミナル１（Julius　サーバー）　@ ~/julius/julius-4.6配下で以下のコマンド
+~/julius/julius-4.6/julius/julius -C ~/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/julius/dict/trash -input mic -module&
+
+ターミナル２（Python クライアント） @ ~Desktop配下で以下のコマンド
+python print_trash.py
+
+↓以下追記
+□ごみ分類に応じてLチカ
+ターミナル１は分類テストと同じ
+
+ターミナル2 下記ファイル保存場所配下で以下のコマンド
+# LEDの点滅テスト (LEDの配線が間違っていないことの確認)
+python led_test.py
+# ごみ分類に応じてLチカ
+python led_trash.py
+
+#rasberry piにpython3.9インストール
+https://qiita.com/nanbuwks/items/ef7dc87354c353eda421
+# GPiOインストール
+https://qiita.com/nanbuwks/items/ef7dc87354c353eda421
