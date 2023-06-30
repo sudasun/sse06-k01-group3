@@ -58,14 +58,14 @@ while True:
             if words[0] == '紙コップ':
                 led_emitting(GPIO_num=2)
 
-                gss.update('紙コップ', 'Open')
+                gss.update('紙コップ', '燃えるゴミ', 'Open')
                 print(words)
                 print(words[0] + "なので" + dict[words[0]] + "のフタをぱかっと開きます‼\n\n")
                 
             elif words[0] == '食品トレイ':
                 led_emitting(GPIO_num=17)
                 
-                gss.update('食品トレイ', 'Open')
+                gss.update('食品トレイ', 'プラスチックゴミ', 'Open')
                 print(words)
                 print(words[0] + "なので" + dict[words[0]] + "のフタをぱかっと開きます‼\n\n")
 

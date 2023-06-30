@@ -34,11 +34,14 @@ date = now.strftime('%Y/%m/%d %H:%M:%S')
 # call = '紙コップ'
 call = '食品トレイ'
 
+# classification
+classification = 'プラスチックゴミ'
+
 # Result:
-result = 'Open'
+result = 'Test'
 
 # []で囲み2次元リストにしないとエラーになる
-add_data = [[date, call, result]]
+add_data = [[date, call, classification, result]]
 workbook.values_append(worksheet.title, {"valueInputOption": "USER_ENTERED"}, {"values": add_data})
 
 print("Add new record.")

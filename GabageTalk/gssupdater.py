@@ -25,7 +25,7 @@ class GssUpdater():
         #OAuth2の資格情報を使用してGoogle APIにログイン。
         self.gc = gspread.authorize(credentials)
 
-    def update(self, trash_name, open_result):
+    def update(self, trash_name, classification, open_result):
         # スプレッドシート（ブック）を開く
         workbook = self.gc.open_by_key(SPREADSHEET_KEY)
         worksheet = workbook.worksheet('trash')
@@ -36,12 +36,6 @@ class GssUpdater():
         now = datetime.datetime.now(JST)
         date = now.strftime('%Y/%m/%d %H:%M:%S')
 
-        # Call:
-        call = trash_name
-
-        # Result:
-        result = open_result
-
         # []で囲み2次元リストにしないとエラーになる
-        add_data = [[date, call, result]]
+        add_data = [[date, trash_name, classification, open_result]]
         workbook.values_append(worksheet.title, {"valueInputOption": "USER_ENTERED"}, {"values": add_data})
