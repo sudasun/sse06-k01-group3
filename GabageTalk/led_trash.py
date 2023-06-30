@@ -5,7 +5,7 @@ import socket
 import xml.etree.ElementTree as ET
 import RPi.GPIO as GPIO     
 import time                         
-
+import gssupdater
 
 GPIO.setmode(GPIO.BCM)              
 GPIO.setup(2, GPIO.OUT)             
@@ -28,6 +28,9 @@ sock.connect((host, port))
 
 # ゴミの名前と分類を定義するkey-value辞書
 dict ={'紙コップ':'燃えるゴミ', '食品トレイ':'燃えないゴミ'}
+
+# Googleスプレッドシート Updater
+gss = gssupdater.GssUpdater()
 
 #データの読み込み
 data = ""
@@ -55,12 +58,14 @@ while True:
             if words[0] == '紙コップ':
                 led_emitting(GPIO_num=2)
 
+                gss.update('紙コップ', 'Open')
                 print(words)
                 print(words[0] + "なので" + dict[words[0]] + "のフタをぱかっと開きます‼\n\n")
                 
             elif words[0] == '食品トレイ':
                 led_emitting(GPIO_num=17)
                 
+                gss.update('食品トレイ', 'Open')
                 print(words)
                 print(words[0] + "なので" + dict[words[0]] + "のフタをぱかっと開きます‼\n\n")
 
