@@ -27,7 +27,12 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((host, port))
 
 # ゴミの名前と分類を定義するkey-value辞書
-dict ={'紙コップ':'燃えるゴミ', '食品トレイ':'燃えないゴミ'}
+dict ={
+    '紙コップ':'燃えるゴミ',
+    'バナナの皮':'燃えるゴミ',
+    'ティッシュ':'燃えるゴミ',
+    '食品トレイ':'プラスチックゴミ',
+    'お菓子のごみ':'プラスチックゴミ'}
 
 # Googleスプレッドシート Updater
 gss = gssupdater.GssUpdater()
@@ -55,18 +60,21 @@ while True:
                 words.append(word)
         # スタブ的に表示
         if words:
-            if words[0] == '紙コップ':
+            if words[0] == '紙コップ' or words[0] == 'バナナの皮' or words[0] == 'ティッシュ':
                 led_emitting(GPIO_num=2)
-
-                gss.update('紙コップ', '燃えるゴミ', 'Open')
+                
+                gss.update(words[0], '燃えるゴミ', 'Open')
                 print(words)
                 print(words[0] + "なので" + dict[words[0]] + "のフタをぱかっと開きます‼\n\n")
                 
-            elif words[0] == '食品トレイ':
+            elif words[0] == '食品トレイ' or words[0] == 'お菓子のごみ':
                 led_emitting(GPIO_num=17)
                 
-                gss.update('食品トレイ', 'プラスチックゴミ', 'Open')
+                gss.update(words[0], 'プラスチックゴミ', 'Open')
                 print(words)
                 print(words[0] + "なので" + dict[words[0]] + "のフタをぱかっと開きます‼\n\n")
-
+            else:
+                gss.update(words[0], 'unsupported', 'Close')
+                print(words)
+                
     data = data[end_idx:]
